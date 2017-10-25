@@ -1,38 +1,27 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import App from './App'
+import Layout from './components/layout'
+import IndexPage from './pages/index'
 // import router from './router'
 import VRouter from 'vue-router'
-import Apple from './components/apple'
-import Banana from './components/banana'
-import RedBanana from './components/redBanana'
+import Vuex from 'vuex'
 Vue.use(VRouter)
-// Vue.config.productionTip = false
-
+Vue.use(Vuex)
+Vue.config.productionTip = false
 let router = new VRouter({
 	mode:'history',
 	routes:[
 		{
-			path:'/apple',
-			component: Apple
-		},
-		{
-			path: '/banana',
-			component: Banana,
-			children:[
-				{
-					path:'red',
-					component: Apple
-				}
-			]
+			path:'/',
+			component: IndexPage
 		}
 	]
 })
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  template: '<Layout/>',
   router,
-  template: '<App/>',
-  components: { App }
+  components: { Layout  }
 })
