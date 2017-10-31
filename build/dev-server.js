@@ -42,6 +42,16 @@ const hotMiddleware = require('webpack-hot-middleware')(compiler, {
 //     cb()
 //   })
 // })
+const jsonServer = require('json-server')
+const apiserver = jsonServer.create()
+const apirouter = jsonServer.router('db.json')
+const middlewares = jsonServer.defaults()
+ 
+apiserver.use(middlewares)
+apiserver.use('/api',apirouter)
+apiserver.listen(port+1, () => {
+  console.log('JSON Server is running')
+})
 
 // enable hot-reload and state-preserving
 // compilation error display
